@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retro Electronics Hub - Y2K World</title>
+<link rel="stylesheet" href="assets/stylesheet.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Silkscreen:wght@400;700&family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#ff5c9a;--hot-pink:#ff2f7d;--light-pink:#ffd6e7;--blue:#65dff2;--sky:#c9f7ff;--dark-blue:#0097b2;--yellow:#ffe66d;--orange:#ffad4d;--purple:#a66cff;--lavender:#eadcff;--cream:#fff9ed;--white:#fff;--dark:#4a3568}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Fredoka',sans-serif;background:radial-gradient(circle at 10% 10%,rgba(255,255,255,.8) 0 5px,transparent 6px),radial-gradient(circle at 90% 20%,rgba(255,255,255,.8) 0 4px,transparent 5px),var(--cream);background-size:80px 80px;color:var(--dark);overflow-x:hidden}
+
+/* NAVBAR */
+.navbar-retro{background:rgba(255,255,255,.95);border-bottom:4px solid var(--pink);box-shadow:0 5px 0 rgba(255,92,154,.12);padding:14px 0}
+.navbar-brand{font-family:'Silkscreen',monospace;color:var(--hot-pink)!important;font-size:20px;text-shadow:3px 3px 0 var(--yellow)}
+.nav-link{color:var(--dark)!important;font-weight:600;margin-left:12px;border-radius:12px;transition:.2s}
+.nav-link:hover{background:var(--light-pink);color:var(--hot-pink)!important;transform:translateY(-2px)}
+.form-select,.form-control{border:2px solid var(--pink);border-radius:10px;font-family:'Fredoka',sans-serif}
+
+/* HERO */
+.hero{min-height:650px;display:flex;align-items:center;overflow:hidden;position:relative;background:linear-gradient(135deg,#ffe3ee,#d8faff,#eee1ff)}
+.hero h1{font-family:'Press Start 2P';font-size:clamp(28px,4vw,52px);line-height:1.35;color:var(--hot-pink);text-shadow:4px 4px 0 #fff,7px 7px 0 var(--blue)}
+.hero p{font-size:19px;line-height:1.7;color:#604b79}
+.hero-badge{display:inline-block;background:var(--yellow);color:var(--dark);padding:8px 15px;border-radius:30px;font-weight:700;transform:rotate(-3deg);box-shadow:4px 4px 0 var(--orange);margin-bottom:20px}
+
+/* RETRO TV */
+.retro-tv{width:390px;max-width:90%;margin:auto;background:#ffcae0;border:8px solid #fff;border-radius:35px;padding:25px;box-shadow:12px 12px 0 var(--hot-pink),20px 20px 0 rgba(101,223,242,.7);transform:rotate(2deg);position:relative}
+.tv-screen{height:230px;background:linear-gradient(135deg,#65dff2,#a9f2ff);border:12px solid #6d5a76;border-radius:50%/15%;position:relative;overflow:hidden;touch-action:pan-y;user-select:none;display:flex;align-items:center;justify-content:center}
+.tv-screen::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0,transparent 4px,rgba(255,255,255,.12) 5px)}
+
+/* TV SLIDER */
+.tv-slide{position:absolute;inset:0;width:100%;height:100%;padding:22px;object-fit:contain;z-index:2;opacity:0;transform:translateX(40px) scale(.96);transition:opacity .6s ease,transform .6s ease;pointer-events:none;-webkit-user-drag:none}
+.tv-slide.active{opacity:1;transform:translateX(0) scale(1)}
+.tv-slide.prev{transform:translateX(-40px)}
+.tv-buttons{display:flex;gap:10px;margin-top:18px;justify-content:center;flex-wrap:wrap}
+.tv-button{width:13px;height:13px;padding:0;cursor:pointer;background:var(--purple);border-radius:50%;border:2px solid #fff;transition:transform .2s,background .2s;opacity:.75}
+.tv-button:nth-child(even){background:var(--blue)}
+.tv-button.active{transform:scale(1.45);border-color:var(--yellow);opacity:1}
+
+/* FLOATING */
+.floating{position:absolute;font-size:40px;animation:floating 4s ease-in-out infinite;z-index:2}
+@keyframes floating{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-15px) rotate(5deg)}}
+.star-1{top:100px;left:4%}
+.star-2{top:250px;right:5%;animation-delay:1s}
+.star-3{bottom:80px;left:8%;animation-delay:2s}
+
+/* HISTORY */
+.section-title{font-family:'Silkscreen',monospace;color:var(--hot-pink);text-align:center;font-size:28px;text-shadow:3px 3px 0 var(--blue);margin-bottom:14px}
+.section-subtitle{text-align:center;color:#604b79;max-width:680px;margin:0 auto 45px;line-height:1.7}
+.history-section{padding:90px 0;background:#fff}
+.sony-history-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:35px}
+.sony-history-card{background:#fff;border:4px solid #604b79;border-radius:18px;overflow:hidden;box-shadow:6px 7px 0 #ffe66d;transition:transform .2s ease}
+.sony-history-card:hover{transform:translateY(-6px) rotate(-1deg)}
+.sony-history-image{height:230px;background:#f4f0ff;display:flex;align-items:center;justify-content:center;padding:18px}
+.sony-history-image img{width:100%;height:100%;object-fit:contain}
+.sony-history-info{padding:18px;background:#fff8fc}
+.sony-history-info span{display:inline-block;font-family:'Silkscreen',monospace;font-size:9px;color:#fff;background:var(--hot-pink);padding:6px 9px;border-radius:6px}
+.sony-history-info h3{font-size:21px;color:#604b79;margin:12px 0 8px}
+.sony-history-info p{color:#604b79;line-height:1.6;margin:0;font-size:14px}
+
+/* ABOUT */
+.about-section{padding:90px 0;background:#fff}
+.about-box{max-width:850px;margin:auto;text-align:center;padding:45px;border-radius:30px;background:linear-gradient(135deg,#fff0f7,#e8fbff);border:3px solid #ffd1e2}
+.about-box h2{font-family:'Silkscreen',monospace;color:var(--hot-pink);margin-bottom:20px}
+.about-box p{color:#604b79;line-height:1.8}
+
+/* FOOTER */
+.retro-footer{background:#4a3568;color:#fff;padding:45px 0 25px}
+.footer-content{display:flex;justify-content:space-between;gap:30px;align-items:center}
+.footer-brand{font-family:'Silkscreen',monospace;color:var(--yellow);font-size:20px}
+.footer-text{color:#eadcff;margin:8px 0 0}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.2);margin-top:30px;padding-top:18px;text-align:center;color:#eadcff;font-size:13px}
+
+/* RESPONSIVE */
+@media(max-width:992px){.sony-history-grid{grid-template-columns:repeat(2,1fr)}.footer-content{flex-direction:column;text-align:center}}
+@media(max-width:768px){.hero{text-align:center;padding:70px 0}.hero h1{font-size:45px}.retro-tv{margin-top:30px}}
+@media(max-width:576px){.sony-history-grid{grid-template-columns:1fr}.retro-tv{padding:18px}.tv-screen{height:200px}.tv-slide{padding:16px}}
+
+.read-story-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:9px 14px;
+    background:var(--hot-pink);
+    color:#fff;
+    border:3px solid #fff;
+    border-radius:10px;
+    box-shadow:4px 4px 0 var(--yellow);
+    font-family:'Silkscreen',monospace;
+    font-size:10px;
+    text-decoration:none;
+    transition:transform .2s ease, box-shadow .2s ease;
+}
+.read-story-btn:hover{
+    color:#fff;
+    transform:translateY(-3px);
+    box-shadow:5px 6px 0 var(--yellow);
+}
+
+
+.story-panel{scroll-margin-top:90px}
+
+
+/* ===== MUSIC + TV VIDEO AFTER PIXEL JUMP ===== */
+.media-section{padding:90px 0;background:linear-gradient(135deg,#fff0f7,#e8fbff)}
+.media-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:30px;align-items:stretch}
+.media-card{background:#fff;border:4px solid #604b79;border-radius:28px;padding:24px;box-shadow:10px 10px 0 var(--yellow)}
+.media-card h2{font-family:'Silkscreen',monospace;color:var(--hot-pink);text-shadow:3px 3px 0 var(--blue);margin:12px 0}
+.media-card p{color:#604b79;line-height:1.7}
+.music-player{margin-top:28px;padding:22px;border:3px dashed var(--pink);border-radius:20px;background:#fff8fc}
+.music-player audio{width:100%;margin-top:15px}
+.music-note{font-size:13px;margin-top:15px}
+.tv-video-frame{background:#ffcae0;border:8px solid #fff;border-radius:35px;padding:22px;box-shadow:8px 8px 0 var(--hot-pink);position:relative}
+.tv-video-screen{position:relative;background:#1f1830;border:12px solid #6d5a76;border-radius:50%/15%;overflow:hidden;aspect-ratio:16/9;box-shadow:inset 0 0 0 4px #40334d}
+.tv-video-screen::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0,transparent 4px,rgba(255,255,255,.09) 5px)}
+.tv-video-screen video{display:block;width:100%;height:100%;object-fit:contain;background:#1f1830}
+.tv-controls-label{text-align:center;font-family:'Silkscreen',monospace;font-size:10px;color:#604b79;margin-top:15px}
+@media(max-width:768px){.media-grid{grid-template-columns:1fr}.tv-video-frame{margin-top:5px}}
+
+
+/* ===== TYPOGRAPHY UPGRADE: lebih besar, lebih terbaca, lebih aesthetic =====
+   Diletakkan paling bawah supaya menimpa ukuran lama (termasuk dari assets/stylesheet.css). */
+
+body{font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* NAVBAR: semua teks sama opacity-nya (tidak ada yang pudar / beda saat active) */
+.navbar-retro .navbar-nav .nav-link,
+.navbar-retro .navbar-nav .nav-link.active,
+.navbar-retro .navbar-nav .nav-link:focus,
+.navbar-retro .navbar-nav .show>.nav-link{
+    color:var(--dark)!important;
+    opacity:1!important;
+    font-size:17px!important;
+    font-weight:600;
+    letter-spacing:.3px;
+    padding:8px 16px!important;
+}
+.navbar-retro .navbar-nav .nav-link:hover{
+    color:var(--hot-pink)!important;
+    opacity:1!important;
+}
+.navbar-brand{font-size:24px!important;letter-spacing:1px;opacity:1!important}
+/* Select bahasa + search: ukuran sama, teks besar, tidak tertimpa panah */
+.navbar-retro .form-select,
+.navbar-retro .form-control{
+    font-size:17px!important;
+    font-weight:500;
+    height:44px;
+    padding:6px 14px;
+    color:var(--dark);
+    border:2px solid var(--pink);
+    border-radius:12px;
+    opacity:1;
+}
+.navbar-retro .form-select{
+    width:auto;
+    min-width:86px;
+    padding-right:2.4rem;
+    font-weight:600;
+    letter-spacing:.5px;
+    background-position:right .85rem center;
+}
+.navbar-retro .form-control{min-width:210px}
+.navbar-retro .form-control{font-weight:600}
+.navbar-retro .form-control::placeholder{color:var(--dark)!important;opacity:1!important;font-weight:600}
+.navbar-retro .form-control::-webkit-input-placeholder{color:var(--dark);opacity:1}
+.navbar-retro .form-control::-moz-placeholder{color:var(--dark);opacity:1}
+.navbar-retro .form-select:focus,
+.navbar-retro .form-control:focus{
+    border-color:var(--hot-pink);
+    box-shadow:0 0 0 .22rem rgba(255,92,154,.25);
+}
+
+/* HERO */
+.hero-badge{font-size:16px;padding:9px 18px;letter-spacing:.5px}
+.hero h1{font-size:clamp(30px,4.2vw,56px)!important;line-height:1.4}
+.hero p{font-size:22px!important;line-height:1.75}
+.retro-btn{font-size:16px!important}
+
+/* SECTION TITLES */
+.section-title{font-size:clamp(28px,3.4vw,38px)!important;letter-spacing:1px}
+.section-subtitle{font-size:19px!important;line-height:1.8;max-width:740px}
+
+/* KARTU SONY */
+.sony-history-info span{font-size:12px!important;padding:7px 11px;letter-spacing:.5px}
+.sony-history-info h3{font-size:25px!important;margin:14px 0 10px}
+.sony-history-info p{font-size:17px!important;line-height:1.7}
+.read-story-btn{font-size:12px!important;padding:11px 16px;letter-spacing:.5px}
+
+/* STORIES */
+.section-kicker{font-size:14px!important;letter-spacing:2px}
+.story-heading{font-size:clamp(34px,5vw,60px)!important;line-height:1.2}
+.story-intro{font-size:20px!important;line-height:1.8}
+.story-number{font-size:13px!important;letter-spacing:1.5px}
+.story-panel h3{font-size:clamp(26px,3.2vw,38px)!important;line-height:1.3}
+.story-panel h4{font-size:16px!important;letter-spacing:1.5px;margin-top:28px}
+.story-panel p{font-size:19px!important;line-height:1.9}
+.story-list li{font-size:18px!important;line-height:1.8;margin-bottom:6px}
+.story-tag{font-size:15px!important;padding:8px 16px}
+.story-note{font-size:18px!important;line-height:1.8}
+
+/* ARCADE */
+.arcade-title{font-size:clamp(34px,5vw,56px)!important}
+.arcade-copy{font-size:19px!important;line-height:1.8}
+.retro-button,.game-btn{font-size:15px!important}
+.game-status{font-size:15px!important}
+
+/* MUSIC + VIDEO */
+.media-card h2{font-size:clamp(26px,3vw,34px)!important}
+.media-card p{font-size:19px!important;line-height:1.8}
+.music-player>div{font-size:14px!important}
+.tv-controls-label{font-size:13px!important;letter-spacing:1px}
+
+/* SOURCES */
+.sources h2{font-size:clamp(28px,4vw,44px)!important}
+.sources .section-description{font-size:19px!important;line-height:1.8}
+.sources .story-list li{font-size:18px!important}
+
+/* ABOUT */
+.about-box h2{font-size:clamp(26px,3vw,34px)}
+.about-box p{font-size:19px!important;line-height:1.9}
+
+/* FOOTER */
+.footer-brand{font-size:24px!important}
+.footer-text{font-size:17px}
+.footer-bottom{font-size:15px!important}
+
+/* MOBILE */
+@media(max-width:576px){
+    body{font-size:17px}
+    .hero p{font-size:19px!important}
+    .story-panel p,.story-list li,.story-note,.media-card p,.about-box p{font-size:17px!important}
+    .navbar-retro .navbar-nav .nav-link{font-size:18px!important}
+}
+
+/* =====================================================================
+   VISUAL POLISH (CSS saja) — konten, struktur, dan JavaScript tidak diubah
+   ===================================================================== */
+
+/* Dasar: seleksi teks, scrollbar, fokus keyboard */
+::selection{background:var(--hot-pink);color:#fff}
+html{scrollbar-color:var(--pink) #fff0f7;scrollbar-width:thin}
+::-webkit-scrollbar{width:12px}
+::-webkit-scrollbar-track{background:#fff0f7}
+::-webkit-scrollbar-thumb{background:var(--pink);border-radius:10px;border:3px solid #fff0f7}
+::-webkit-scrollbar-thumb:hover{background:var(--hot-pink)}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,audio:focus-visible,video:focus-visible{
+    outline:3px solid var(--yellow);
+    outline-offset:3px;
+    border-radius:10px;
+}
+img{image-rendering:auto}
+
+/* NAVBAR: kaca buram + bayangan lebih halus */
+.navbar-retro{
+    background:rgba(255,255,255,.88);
+    -webkit-backdrop-filter:blur(12px) saturate(1.4);
+    backdrop-filter:blur(12px) saturate(1.4);
+    box-shadow:0 6px 0 rgba(255,92,154,.12),0 12px 30px rgba(166,108,255,.12);
+}
+.navbar-brand{transition:transform .25s ease,text-shadow .25s ease}
+.navbar-brand:hover{transform:translateY(-2px) rotate(-1deg);text-shadow:4px 4px 0 var(--yellow),7px 7px 0 var(--light-pink)}
+.navbar-retro .navbar-nav .nav-link{position:relative}
+.navbar-retro .navbar-nav .nav-link::after{
+    content:"";position:absolute;left:50%;bottom:2px;width:0;height:3px;
+    background:var(--hot-pink);border-radius:3px;transform:translateX(-50%);
+    transition:width .25s ease;
+}
+.navbar-retro .navbar-nav .nav-link:hover::after,
+.navbar-retro .navbar-nav .nav-link.active::after{width:34%}
+.navbar-retro .form-select,.navbar-retro .form-control{
+    background-color:#fffafd;
+    transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.navbar-retro .form-select:hover,.navbar-retro .form-control:hover{transform:translateY(-1px)}
+
+/* HERO: lapisan warna lembut + efek mengambang */
+.hero::before{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+        radial-gradient(circle at 12% 18%,rgba(255,255,255,.75) 0 90px,transparent 91px),
+        radial-gradient(circle at 88% 78%,rgba(255,230,109,.40) 0 130px,transparent 131px),
+        radial-gradient(circle at 70% 12%,rgba(166,108,255,.20) 0 160px,transparent 161px),
+        radial-gradient(circle at 25% 90%,rgba(101,223,242,.35) 0 140px,transparent 141px);
+}
+.hero .container{position:relative;z-index:1}
+.hero-badge{animation:badgeWiggle 4.5s ease-in-out infinite}
+@keyframes badgeWiggle{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(-1deg) translateY(-3px)}}
+.hero h1{text-shadow:4px 4px 0 #fff,7px 7px 0 var(--blue),10px 10px 18px rgba(74,53,104,.18)}
+.retro-btn{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+.retro-btn:hover{transform:translateY(-4px) scale(1.03);filter:brightness(1.06) saturate(1.1)}
+.retro-btn:active{transform:translateY(0) scale(.98)}
+
+/* RETRO TV: sorotan layar + gerak halus saat hover */
+.retro-tv{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s ease}
+.retro-tv:hover{
+    transform:rotate(0deg) translateY(-6px);
+    box-shadow:14px 14px 0 var(--hot-pink),24px 24px 0 rgba(101,223,242,.7),0 30px 50px rgba(74,53,104,.18);
+}
+.tv-screen{box-shadow:inset 0 0 40px rgba(0,0,0,.28),inset 0 0 0 3px rgba(255,255,255,.18)}
+.tv-screen::after{
+    content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+    background:radial-gradient(ellipse at 28% 18%,rgba(255,255,255,.28),transparent 45%);
+}
+.tv-screen video{width:100%;height:100%;object-fit:cover}
+
+/* JUDUL SECTION: garis dekoratif kecil di bawah */
+.section-title::after{
+    content:"";display:block;width:90px;height:6px;margin:16px auto 0;border-radius:6px;
+    background:repeating-linear-gradient(90deg,var(--hot-pink) 0 14px,var(--yellow) 14px 28px,var(--blue) 28px 42px);
+}
+.section-subtitle{color:#5a4575}
+
+/* KARTU SONY: hover lebih hidup */
+.sony-history-card{
+    transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease;
+    box-shadow:6px 7px 0 #ffe66d,0 14px 28px rgba(74,53,104,.10);
+}
+.sony-history-card:hover{
+    transform:translateY(-8px) rotate(-1deg);
+    box-shadow:9px 11px 0 var(--yellow),0 22px 40px rgba(255,47,125,.18);
+}
+.sony-history-image{background:radial-gradient(circle at 50% 40%,#fff,#f1eaff 70%);overflow:hidden}
+.sony-history-image img{transition:transform .45s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 8px 10px rgba(74,53,104,.18))}
+.sony-history-card:hover .sony-history-image img{transform:scale(1.08) rotate(2deg)}
+.read-story-btn:active{transform:translateY(0);box-shadow:2px 2px 0 var(--yellow)}
+
+/* STORIES: transisi halus + tag & catatan lebih menarik (tanpa menimpa tata letak) */
+.story-panel{transition:transform .3s ease}
+.story-tag{transition:transform .2s ease,box-shadow .2s ease}
+.story-tag:hover{transform:translateY(-3px) rotate(-1.5deg)}
+.story-note{box-shadow:0 10px 24px rgba(74,53,104,.08)}
+.story-list a,.sources a{
+    text-decoration-color:var(--pink);text-underline-offset:4px;text-decoration-thickness:2px;
+    transition:color .2s ease,text-decoration-color .2s ease;
+}
+.story-list a:hover,.sources a:hover{color:var(--hot-pink);text-decoration-color:var(--yellow)}
+
+/* ARCADE */
+.retro-button,.game-btn{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+.retro-button:hover,.game-btn:hover{transform:translateY(-3px);filter:brightness(1.06)}
+.retro-button:active,.game-btn:active{transform:translateY(0) scale(.97)}
+#gameCanvas{max-width:100%;border-radius:14px;box-shadow:0 12px 28px rgba(74,53,104,.15)}
+
+/* MUSIC + VIDEO */
+.media-card{transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
+.media-card:hover{transform:translateY(-6px);box-shadow:12px 14px 0 var(--yellow),0 24px 40px rgba(74,53,104,.14)}
+.music-player{background:linear-gradient(135deg,#fff8fc,#f4f0ff)}
+.music-player audio{border-radius:30px}
+.tv-video-frame{transition:box-shadow .3s ease}
+.tv-video-frame:hover{box-shadow:10px 10px 0 var(--hot-pink),0 24px 40px rgba(74,53,104,.15)}
+.tv-video-screen{box-shadow:inset 0 0 40px rgba(0,0,0,.45),inset 0 0 0 4px #40334d}
+
+/* ABOUT */
+.about-box{box-shadow:0 18px 40px rgba(255,92,154,.12);transition:transform .3s ease,box-shadow .3s ease}
+.about-box:hover{transform:translateY(-4px);box-shadow:0 26px 50px rgba(255,92,154,.18)}
+
+/* FOOTER: garis warna di atas */
+.retro-footer{position:relative}
+.retro-footer::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:6px;
+    background:repeating-linear-gradient(90deg,var(--hot-pink) 0 40px,var(--yellow) 40px 80px,var(--blue) 80px 120px,var(--purple) 120px 160px);
+}
+
+/* Muncul halus saat di-scroll (hanya browser yang mendukung; tanpa JavaScript) */
+@supports (animation-timeline:view()){
+    .sony-history-card,.media-card,.about-box,.story-panel{
+        animation:riseIn linear both;
+        animation-timeline:view();
+        animation-range:entry 0% entry 32%;
+    }
+    @keyframes riseIn{from{opacity:0;translate:0 36px}to{opacity:1;translate:0 0}}
+}
+
+/* Hormati pengguna yang mematikan animasi */
+@media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-retro sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#home">RETRO-HUB</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#highlight">Highlight</a></li>
+                <li class="nav-item ms-lg-3">
+                    <select class="form-select form-select-sm" id="languageSelect">
+                        <option value="id">ID</option>
+                        <option value="en">EN</option>
+                    </select>
+                </li>
+                <li class="nav-item ms-2">
+                    <input id="searchInput" class="form-control form-control-sm" type="search" placeholder="Search...">
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+    <div class="floating star-1">⭐</div>
+    <div class="floating star-2">💿</div>
+    <div class="floating star-3">💗</div>
+
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <span class="hero-badge">✦ Y2K • RETRO • ELECTRONICS ✦</span>
+                <h1>Welcome to Retro Electronics!</h1>
+                <p class="mt-4">
+                    Yuk nostalgia bareng teknologi yang pernah menemani kehidupan
+                    sehari-hari. Dari radio, TV tabung, Walkman, CD player, kamera
+                    digital, sampai game console yang ikonik.
+                </p>
+                <a href="#history" class="retro-btn text-decoration-none d-inline-block mt-2">EXPLORE ✦</a>
+            </div>
+
+            <!-- TV SLIDER: tambah/ubah gambar di sini, titik (dots) dibuat otomatis -->
+            <div class="col-lg-6 text-center">
+                <div class="retro-tv">
+                    <div class="tv-screen" id="tvSlider">
+                        <video width="300" autoplay muted loop playsinline>
+                            <source src="../UTS/Video Bouncing.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="tv-buttons" id="tvDots"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- RETRO SONY ELECTRONICS -->
+<section id="history" class="history-section">
+    <div class="container">
+        <h2 class="section-title">RETRO SONY ELECTRONICS</h2>
+        <p class="section-subtitle">
+            Koleksi perangkat elektronik Sony dari era retro yang menunjukkan
+            bagaimana teknologi berkembang dari waktu ke waktu.
+        </p>
+
+        <div class="sony-history-grid">
+            <div class="sony-history-card">
+                <div class="sony-history-image">
+                    <img src="../UTS/Sony_Walkman_Pink_Y2K_Illustration.png" alt="Sony Walkman">
+                </div>
+                <div class="sony-history-info">
+                    <span>Music / 01</span>
+                    <h3>Sony Walkman</h3>
+                    <p>Pemutar kaset portable yang menjadi salah satu ikon perangkat musik pribadi.</p>
+                    <a href="#walkman" class="read-story-btn">LIHAT PENJELASAN →</a>
+                </div>
+            </div>
+
+            <div class="sony-history-card">
+                <div class="sony-history-image">
+                    <img src="../UTS/MP3_Pink_Y2K_Illustration.png" alt="MP3 Player">
+                </div>
+                <div class="sony-history-info">
+                    <span>Devices / 02</span>
+                    <h3>MP3 Players</h3>
+                    <p>Koleksi musik digital memungkinkan pengguna membawa banyak lagu dalam satu perangkat.</p>
+                    <a href="#mp3" class="read-story-btn">LIHAT PENJELASAN →</a>
+                </div>
+            </div>
+
+            <div class="sony-history-card">
+                <div class="sony-history-image">
+                    <img src="../UTS/PSP_Pink_Y2K_Illustration.png" alt="PSP">
+                </div>
+                <div class="sony-history-info">
+                    <span>Games / 03</span>
+                    <h3>PSP & Portable Gaming</h3>
+                    <p>Konsol genggam membawa pengalaman bermain game ke perjalanan dan waktu istirahat.</p>
+                    <a href="#psp" class="read-story-btn">LIHAT PENJELASAN →</a>
+                </div>
+            </div>
+
+            <div class="sony-history-card">
+                <div class="sony-history-image">
+                    <img src="../UTS/Kamera_Pink_Y2K_Illustration.png" alt="Sony Cyber-shot">
+                </div>
+                <div class="sony-history-info">
+                    <span>Photo / 04</span>
+                    <h3>Digital Cameras</h3>
+                    <p>Kamera digital saku membuat momen sehari-hari lebih mudah direkam, dilihat, dan disimpan.</p>
+                    <a href="#camera" class="read-story-btn">LIHAT PENJELASAN →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STORIES -->
+<section class="story-archive" id="stories">
+    <div class="container-fluid px-0">
+
+        <div class="section-kicker">✦ THE STORIES BEHIND THE DEVICES ✦</div>
+        <h2 class="story-heading">More Than Just Electronics.</h2>
+        <p class="story-intro">
+            Setiap perangkat punya cerita. Kenali teknologi, musik,
+            dan game yang membentuk kehidupan digital di era 2000-an.
+        </p>
+
+        <!-- WALKMAN -->
+        <article class="story-panel" id="walkman">
+            <div class="story-number">ARCHIVE 001 / MUSIC CULTURE / 2006</div>
+            <h3>Walkman & Mixtapes: Music on Your Own Terms</h3>
+            <p>
+                Pemutar kaset portabel seperti Sony Walkman mengubah kebiasaan
+                mendengarkan musik dengan memungkinkan orang membawa musik
+                ke sekolah, perjalanan, atau saat berjalan kaki. Remaja dapat
+                menikmati lagu menggunakan headphone tanpa harus menguasai
+                radio atau pemutar musik di rumah.
+            </p>
+            <p>
+                Mixtape juga menjadi cara untuk menunjukkan selera musik.
+                Seseorang dapat merekam lagu pilihan ke dalam kaset, menyusun
+                urutan lagu, lalu memberikan kaset tersebut kepada teman.
+                Kebiasaan ini memiliki kemiripan dengan playlist personal
+                yang digunakan sekarang.
+            </p>
+            <h4>WHAT WAS ON REPEAT IN 2006?</h4>
+            <p>
+                Berikut beberapa lagu dari Billboard Year-End Hot 100
+                Amerika Serikat tahun 2006. Ini adalah referensi musik populer
+                di AS, bukan peringkat global atau khusus pengguna Walkman.
+            </p>
+            <ol class="story-list">
+                <li><strong>Bad Day</strong> — Daniel Powter</li>
+                <li><strong>Temperature</strong> — Sean Paul</li>
+                <li><strong>Promiscuous</strong> — Nelly Furtado feat. Timbaland</li>
+                <li><strong>You're Beautiful</strong> — James Blunt</li>
+                <li><strong>Hips Don't Lie</strong> — Shakira feat. Wyclef Jean</li>
+                <li><strong>Crazy</strong> — Gnarls Barkley</li>
+                <li><strong>SexyBack</strong> — Justin Timberlake</li>
+                <li><strong>SOS</strong> — Rihanna</li>
+            </ol>
+            <h4>GENRES IN THE MIX</h4>
+            <div class="story-tags">
+                <span class="story-tag">Pop</span>
+                <span class="story-tag">Hip-Hop</span>
+                <span class="story-tag">R&B</span>
+                <span class="story-tag">Dancehall</span>
+                <span class="story-tag">Alternative Rock</span>
+            </div>
+            <div class="story-note">
+                RETRO FACT — Mixtape memungkinkan pendengarnya menyusun
+                pengalaman musik sendiri. Pada era kaset, pilihan lagu
+                dan urutannya sering menjadi bagian dari pesan yang
+                ingin disampaikan kepada penerima.
+            </div>
+        </article>
+
+        <!-- MP3 PLAYER -->
+        <article class="story-panel" id="mp3">
+            <div class="story-number">ARCHIVE 002 / DIGITAL MUSIC / 2000s</div>
+            <h3>MP3 Players: An Entire Music Library in Your Pocket</h3>
+            <p>
+                Pemutar MP3 mengubah cara orang membawa musik. Berbeda dengan
+                kaset yang menggunakan pita fisik, MP3 player menyimpan
+                musik sebagai berkas digital. Pengguna dapat memilih lagu
+                tanpa harus mengganti kaset atau CD setiap kali ingin
+                mendengarkan album lain.
+            </p>
+            <p>
+                Perangkat seperti Apple iPod membantu memopulerkan pengalaman
+                membawa banyak lagu dalam satu perangkat. Komputer menjadi
+                bagian dari kebiasaan baru: pengguna mengatur koleksi musik,
+                memindahkan berkas ke perangkat, lalu mendengarkannya saat
+                bepergian.
+            </p>
+            <h4>HOW DID IT WORK?</h4>
+            <ul class="story-list">
+                <li><strong>Flash memory atau hard drive:</strong> menyimpan berkas musik.</li>
+                <li><strong>Audio decoder:</strong> mendekode berkas MP3 menjadi data audio.</li>
+                <li><strong>DAC:</strong> mengubah audio digital menjadi sinyal analog.</li>
+                <li><strong>Audio amplifier:</strong> memperkuat sinyal untuk headphone.</li>
+                <li><strong>Battery:</strong> menyediakan daya untuk pemutaran portabel.</li>
+            </ul>
+            <div class="story-note">
+                THE BIG CHANGE — Koleksi musik yang sebelumnya memenuhi
+                rak kaset atau CD bisa dibawa dalam perangkat berukuran kecil.
+                Kapasitas penyimpanan dan kompresi MP3 menjadi bagian penting
+                dari perubahan ini.
+            </div>
+        </article>
+
+        <!-- PSP -->
+        <article class="story-panel" id="psp">
+            <div class="story-number">ARCHIVE 003 / PORTABLE GAMING / 2006</div>
+            <h3>PlayStation Portable: Console Gaming on the Go</h3>
+            <p>
+                Sony PSP menghadirkan pengalaman bermain game dalam perangkat
+                genggam dengan layar lebar, kontrol fisik, dan grafis yang
+                ambisius untuk perangkat portabel pada masanya. Pemain dapat
+                bermain ketika bepergian, saat istirahat, atau ketika
+                berkumpul dengan teman.
+            </p>
+            <p>
+                PSP juga memiliki kemampuan multimedia, termasuk memutar musik
+                dan video. Konektivitas Wi-Fi pada perangkat dan game yang
+                mendukungnya memungkinkan fitur nirkabel tertentu, sehingga
+                PSP tidak hanya berfungsi sebagai konsol permainan.
+            </p>
+            <h4>GAMES THAT DEFINED THE ERA</h4>
+            <p>
+                Berikut beberapa game PSP yang relevan dengan periode
+                pertengahan 2000-an. Daftar ini bukan peringkat resmi global.
+            </p>
+            <ul class="story-list">
+                <li><strong>Grand Theft Auto: Liberty City Stories</strong> — game open-world yang menjadi salah satu judul penting dalam katalog PSP.</li>
+                <li><strong>Grand Theft Auto: Vice City Stories</strong> — membawa pemain kembali ke dunia Vice City.</li>
+                <li><strong>Daxter</strong> — game platformer yang dirilis pada 2006.</li>
+                <li><strong>Tekken: Dark Resurrection</strong> — game fighting dengan pertarungan cepat.</li>
+                <li><strong>Need for Speed: Most Wanted 5-1-0</strong> — game balap yang dirancang untuk PSP.</li>
+                <li><strong>SOCOM: U.S. Navy SEALs Fireteam Bravo</strong> — game tactical shooter dengan fitur multiplayer.</li>
+            </ul>
+            <h4>WHAT MADE IT SPECIAL?</h4>
+            <div class="story-tags">
+                <span class="story-tag">UMD Game Discs</span>
+                <span class="story-tag">Wide LCD Screen</span>
+                <span class="story-tag">Analog Stick</span>
+                <span class="story-tag">Wi-Fi Multiplayer</span>
+            </div>
+            <div class="story-note">
+                RETRO FACT — Banyak game PSP menggunakan Universal Media Disc
+                (UMD), format cakram optik kecil yang dirancang untuk perangkat
+                portabel. PSP juga memiliki analog stick yang membantu
+                kontrol permainan tiga dimensi.
+            </div>
+        </article>
+
+        <!-- CYBER-SHOT -->
+        <article class="story-panel" id="camera">
+            <div class="story-number">ARCHIVE 004 / DIGITAL PHOTOGRAPHY / 2006</div>
+            <h3>Sony Cyber-shot: Capturing Life in a Pocket</h3>
+            <p>
+                Kamera digital saku membuat dokumentasi keseharian lebih
+                praktis. Pengguna dapat melihat foto langsung pada layar,
+                menghapus foto yang tidak diinginkan, dan memindahkan hasilnya
+                ke komputer tanpa harus menunggu film dicuci. Ukurannya cocok
+                untuk perjalanan, acara sekolah, dan foto bersama teman.
+            </p>
+            <p>
+                Salah satu contoh inovasi pada 2006 adalah Sony Cyber-shot
+                DSC-T50. Kamera ini memiliki sensor CCD 7,2 megapiksel,
+                lensa zoom optik 3x, layar sentuh 3 inci, dan teknologi
+                Optical SteadyShot untuk membantu mengurangi efek guncangan.
+            </p>
+            <h4>INSIDE THE CAMERA</h4>
+            <ul class="story-list">
+                <li><strong>CCD image sensor:</strong> menangkap cahaya yang masuk melalui lensa dan mengubahnya menjadi sinyal untuk membentuk gambar digital.</li>
+                <li><strong>Lens & optical zoom:</strong> mengarahkan cahaya ke sensor dan memperbesar objek secara optik.</li>
+                <li><strong>Optical image stabilization:</strong> sistem stabilisasi optik membantu mengurangi blur akibat gerakan tangan saat memotret.</li>
+                <li><strong>Image processor:</strong> memproses data gambar, termasuk warna dan detail, sebelum hasilnya disimpan.</li>
+                <li><strong>Memory Stick:</strong> media penyimpanan yang digunakan untuk menyimpan foto pada model yang mendukungnya.</li>
+                <li><strong>LCD touchscreen:</strong> membantu pengguna melihat foto dan mengakses sejumlah pengaturan melalui layar sentuh.</li>
+            </ul>
+            <div class="story-note">
+                WHY IT MATTERED — Sensor CCD menangkap informasi cahaya,
+                sedangkan sistem stabilisasi membantu mengurangi efek
+                guncangan. Kombinasi teknologi tersebut menunjukkan bagaimana
+                kamera saku berkembang menjadi perangkat digital yang semakin
+                praktis dan canggih.
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- MINI GAME -->
+<section class="arcade" id="arcade">
+    <div class="container-fluid px-0">
+        <div class="arcade-layout">
+            <div>
+                <div class="section-kicker">✦ ARCADE CORNER / GAME 001 ✦</div>
+                <h2 class="arcade-title">PIXEL JUMP!</h2>
+                <p class="arcade-copy">Jump over the obstacles.<br>Keep going and beat your high score.</p>
+                <p class="arcade-copy mb-3">
+                    Press <strong>SPACE</strong>, click the game, or tap <strong>JUMP</strong> to play.
+                </p>
+                <button class="retro-button" id="startGame">PLAY / RESTART ↗</button>
+            </div>
+            <div class="game-box">
+                <canvas id="gameCanvas" width="900" height="180"
+                    aria-label="Pixel Jump game. Press Space or click to jump."></canvas>
+                <div class="game-status">
+                    <span>SCORE: <span id="score">0</span></span>
+                    <span>BEST: <span id="bestScore">0</span></span>
+                    <button class="game-btn" id="jumpButton">JUMP ↑</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- MUSIC + TV VIDEO AFTER PIXEL JUMP -->
+<section class="media-section" id="media">
+    <div class="container">
+        <div class="media-grid">
+            <div class="media-card">
+                <div class="section-kicker">✦ MUSIC CORNER ✦</div>
+                <h2>RETRO MUSIC</h2>
+                <p>Sekarang Memainkan</p>
+                <p>Promiscous by Nelly Furttado feat. Timbaland</p>
+                <div class="music-player">
+                    <div style="font-family:'Silkscreen',monospace;color:#604b79;font-size:12px;">♫ NOW PLAYING</div>
+                    <audio id="retroMusic" controls preload="metadata">
+                        <source src="../UTS/Nelly Furtado - Promiscuous (Lyrics) ft. Timbaland.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <div class="media-card">
+                <div class="section-kicker">✦ VIDEO CORNER ✦</div>
+                <h2>RETRO TV</h2>
+                <div class="tv-video-frame">
+                    <div class="tv-video-screen">
+                        <video id="retroVideo" autoplay muted loop playsinline controls>
+                            <source src="../UTS/Fotos de mares - Caras de reloj, Logotipo de tipografía, Cosas.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="tv-controls-label">● LIVE RETRO SCREEN ●</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOURCES -->
+<section class="sources" id="sources">
+    <div class="container-fluid px-0">
+        <div class="section-kicker">✦ FURTHER READING ✦</div>
+        <h2>Explore the Original Stories.</h2>
+        <p class="section-description">
+            Referensi untuk membaca lebih lanjut tentang musik, game,
+            dan teknologi perangkat yang dibahas di Retro-Hub.
+        </p>
+        <ul class="story-list">
+            <li><a href="https://en.wikipedia.org/wiki/Billboard_Year-End_Hot_100_singles_of_2006" target="_blank" rel="noopener noreferrer">Billboard Year-End Hot 100 Singles — 2006</a></li>
+            <li><a href="https://sony.mediaroom.com/2006-07-25-Greatest-Hits-Titles-for-the-PSP-PlayStation-Portable-System-Now-Available" target="_blank" rel="noopener noreferrer">Sony — PSP Greatest Hits announcement, 2006</a></li>
+            <li><a href="https://www.sony.com/electronics/support/compact-cameras-dsc-t-series/dsc-t50/specifications" target="_blank" rel="noopener noreferrer">Sony Cyber-shot DSC-T50 specifications</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/PlayStation_Portable" target="_blank" rel="noopener noreferrer">PlayStation Portable — hardware and history</a></li>
+        </ul>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="about-box">
+            <h2>ABOUT ELECTRONICS</h2>
+            <p>
+                Elektronik merupakan bagian penting dari perkembangan teknologi.
+                Dari radio, televisi, Walkman, hingga konsol game portable,
+                setiap perangkat menunjukkan bagaimana komponen elektronik
+                berkembang menjadi lebih kecil, praktis, dan mudah digunakan.
+            </p>
+            <p>
+                RETRO-HUB dibuat sebagai ruang sederhana untuk mengenal kembali
+                perangkat elektronik lama sekaligus melihat bagaimana teknologi
+                tersebut berhubungan dengan perangkat modern.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="retro-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">RETRO-HUB</div>
+                <p class="footer-text"></p>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 RETRO-HUB • Y2K Retro Electronics</div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ===== TV SLIDER OTOMATIS ===== */
+(function () {
+    const slider = document.getElementById('tvSlider');
+    const slides = Array.from(slider.querySelectorAll('.tv-slide'));
+    const dotsBox = document.getElementById('tvDots');
+
+    if (!slides.length) return;
+
+    let current = 0;
+    let timer = null;
+    const AUTO_DELAY = 3000;
+
+    // Membuat indikator/titik secara otomatis sesuai jumlah gambar.
+    slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+
+        dot.type = 'button';
+        dot.className = 'tv-button' + (index === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Tampilkan gambar ${index + 1}`);
+
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            startAuto();
+        });
+
+        dotsBox.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsBox.querySelectorAll('.tv-button'));
+
+    function showSlide(index) {
+        const next = (index + slides.length) % slides.length;
+
+        slides[current].classList.remove('active');
+        slides[current].classList.add('prev');
+
+        dots[current].classList.remove('active');
+
+        setTimeout(() => {
+            slides.forEach(slide => slide.classList.remove('prev'));
+        }, 600);
+
+        current = next;
+
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+    }
+
+    function startAuto() {
+        stopAuto();
+        timer = setInterval(() => {
+            showSlide(current + 1);
+        }, AUTO_DELAY);
+    }
+
+    function stopAuto() {
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    // Desktop: berhenti sementara saat kursor berada di layar TV.
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+
+    // Mobile: swipe kiri/kanan untuk mengganti gambar.
+    let startX = 0;
+
+    slider.addEventListener('touchstart', event => {
+        startX = event.touches[0].clientX;
+        stopAuto();
+    }, { passive: true });
+
+    slider.addEventListener('touchend', event => {
+        const diff = event.changedTouches[0].clientX - startX;
+
+        if (Math.abs(diff) > 40) {
+            showSlide(diff < 0 ? current + 1 : current - 1);
+        }
+
+        startAuto();
+    }, { passive: true });
+
+    // Mulai slideshow otomatis saat halaman dibuka.
+    startAuto();
+})();
+
+/* ===== SEARCH ===== */
+const searchInput = document.getElementById('searchInput');
+const deviceCards = document.querySelectorAll('.searchable-device');
+searchInput.addEventListener('input', function () {
+    const query = this.value.toLowerCase().trim();
+    deviceCards.forEach(function (card) {
+        card.style.display = card.innerText.toLowerCase().includes(query) ? '' : 'none';
+    });
+});
+
+/* ===== PIXEL JUMP GAME ===== */
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const scoreDisplay = document.getElementById('score');
+const bestDisplay = document.getElementById('bestScore');
+const startButton = document.getElementById('startGame');
+const jumpButton = document.getElementById('jumpButton');
+const groundY = 145;
+
+let player, obstacles, score, speed, frame, animationId;
+let bestScore = 0, gameRunning = false, gameOver = false;
+
+function resetGame() {
+    player = { x: 65, y: groundY - 28, width: 25, height: 28, velocityY: 0, jumping: false };
+    obstacles = [];
+    score = 0;
+    speed = 4;
+    frame = 0;
+    gameOver = false;
+    gameRunning = true;
+    scoreDisplay.textContent = '0';
+    cancelAnimationFrame(animationId);
+    gameLoop();
+}
+
+function jump() {
+    if (!gameRunning || gameOver) { resetGame(); return; }
+    if (!player.jumping) {
+        player.velocityY = -10.5;
+        player.jumping = true;
+    }
+}
+
+function drawBackground() {
+    ctx.fillStyle = '#baf4ff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#ffffff';
+    [100, 360, 610, 790].forEach(function (x, i) {
+        const cloudX = (x - frame * 0.25 + canvas.width) % canvas.width;
+        const y = 22 + (i % 2) * 18;
+        ctx.fillRect(cloudX, y, 34, 9);
+        ctx.fillRect(cloudX + 8, y - 7, 17, 7);
+        ctx.fillRect(cloudX + 15, y - 12, 9, 5);
+    });
+
+    ctx.fillStyle = '#74d6b1';
+    ctx.fillRect(0, groundY, canvas.width, 5);
+    ctx.fillStyle = '#4dbb98';
+    ctx.fillRect(0, groundY + 5, canvas.width, 30);
+
+    ctx.fillStyle = '#e6c5ff';
+    for (let x = -(frame * speed % 50); x < canvas.width; x += 50) {
+        ctx.fillRect(x, groundY + 13, 17, 4);
+        ctx.fillRect(x + 22, groundY + 23, 12, 4);
+    }
+}
+
+function drawPlayer() {
+    const x = player.x, y = player.y;
+
+    ctx.fillStyle = 'rgba(73, 65, 126, 0.15)';
+    ctx.fillRect(x - 3, groundY - 2, 32, 4);
+
+    ctx.fillStyle = '#ff76bd';
+    ctx.fillRect(x + 4, y + 8, 18, 18);
+    ctx.fillRect(x + 3, y, 7, 10);
+    ctx.fillRect(x + 16, y, 7, 10);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(x + 7, y + 12, 4, 4);
+    ctx.fillRect(x + 16, y + 12, 4, 4);
+
+    ctx.fillStyle = '#49417e';
+    ctx.fillRect(x + 9, y + 13, 2, 3);
+    ctx.fillRect(x + 18, y + 13, 2, 3);
+    ctx.fillRect(x + 2, y + 25, 9, 4);
+    ctx.fillRect(x + 16, y + 25, 9, 4);
+}
+
+function drawObstacle(o) {
+    const x = o.x, y = o.y;
+
+    ctx.fillStyle = '#ff2d91';
+    ctx.fillRect(x + 5, y + 5, 20, 23);
+    ctx.fillRect(x, y + 11, 30, 16);
+
+    ctx.fillStyle = '#49417e';
+    ctx.fillRect(x + 9, y, 12, 7);
+    ctx.fillRect(x + 2, y + 27, 9, 5);
+    ctx.fillRect(x + 20, y + 27, 9, 5);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(x + 10, y + 11, 4, 4);
+    ctx.fillRect(x + 18, y + 11, 4, 4);
+}
+
+function endGame() {
+    gameRunning = false;
+    gameOver = true;
+
+    bestScore = Math.max(bestScore, score);
+    bestDisplay.textContent = bestScore;
+
+    ctx.fillStyle = 'rgba(255, 250, 253, 0.85)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#ff2d91';
+    ctx.font = 'bold 20px "Silkscreen", monospace';
+    ctx.fillText('GAME OVER!', canvas.width / 2, 75);
+
+    ctx.fillStyle = '#49417e';
+    ctx.font = '12px "Space Grotesk", sans-serif';
+    ctx.fillText('Score: ' + score + ' • Click PLAY / RESTART to try again', canvas.width / 2, 105);
+    ctx.textAlign = 'left';
+}
+
+function gameLoop() {
+    if (!gameRunning) return;
+
+    frame++;
+    drawBackground();
+
+    player.velocityY += 0.48;
+    player.y += player.velocityY;
+
+    if (player.y >= groundY - player.height) {
+        player.y = groundY - player.height;
+        player.velocityY = 0;
+        player.jumping = false;
+    }
+
+    if (frame % Math.max(48, Math.floor(90 - speed * 4)) === 0) {
+        obstacles.push({ x: canvas.width + 10, y: groundY - 30, width: 30, height: 30 });
+    }
+
+    obstacles.forEach(function (o) {
+        o.x -= speed;
+        drawObstacle(o);
+
+        const p = 5;
+        if (
+            player.x + player.width - p > o.x + p &&
+            player.x + p < o.x + o.width - p &&
+            player.y + player.height - p > o.y + p &&
+            player.y + p < o.y + o.height
+        ) {
+            endGame();
+        }
+    });
+
+    obstacles = obstacles.filter(function (o) {
+        if (o.x + o.width < 0) {
+            score++;
+            scoreDisplay.textContent = score;
+            speed = Math.min(7, 4 + score * 0.08);
+            return false;
+        }
+        return true;
+    });
+
+    drawPlayer();
+
+    if (gameRunning) animationId = requestAnimationFrame(gameLoop);
+}
+
+startButton.addEventListener('click', resetGame);
+jumpButton.addEventListener('click', jump);
+canvas.addEventListener('click', jump);
+
+document.addEventListener('keydown', function (event) {
+    if (event.code === 'Space' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        event.preventDefault();
+        jump();
+    }
+});
+
+drawBackground();
+player = { x: 65, y: groundY - 28, width: 25, height: 28 };
+drawPlayer();
+bestDisplay.textContent = bestScore;
+
+
+/* ===== LANGUAGE SWITCHER: ID <-> EN ===== */
+(function () {
+    const languageSelect = document.getElementById('languageSelect');
+
+    // Terjemahan hanya untuk teks yang memang berbahasa Indonesia.
+    // Teks yang sudah berbahasa Inggris akan tetap seperti aslinya.
+    const translations = {
+        "Yuk nostalgia bareng teknologi yang pernah menemani kehidupan sehari-hari. Dari radio, TV tabung, Walkman, CD player, kamera digital, sampai game console yang ikonik.":
+            "Let's take a nostalgia trip through the technology that once accompanied everyday life. From radios and tube TVs to Walkmans, CD players, digital cameras, and iconic game consoles.",
+
+        "Koleksi perangkat elektronik Sony dari era retro yang menunjukkan bagaimana teknologi berkembang dari waktu ke waktu.":
+            "A collection of Sony electronic devices from the retro era showing how technology evolved over time.",
+
+        "Pemutar kaset portable yang menjadi salah satu ikon perangkat musik pribadi.":
+            "A portable cassette player that became an icon of personal music devices.",
+
+        "Koleksi musik digital memungkinkan pengguna membawa banyak lagu dalam satu perangkat.":
+            "Digital music collections allowed users to carry many songs in a single device.",
+
+        "Konsol genggam membawa pengalaman bermain game ke perjalanan dan waktu istirahat.":
+            "Handheld consoles brought gaming experiences to trips and break times.",
+
+        "Kamera digital saku membuat momen sehari-hari lebih mudah direkam, dilihat, dan disimpan.":
+            "Pocket digital cameras made everyday moments easier to capture, view, and store.",
+
+        "Setiap perangkat punya cerita. Kenali teknologi, musik, dan game yang membentuk kehidupan digital di era 2000-an.":
+            "Every device has a story. Discover the technology, music, and games that shaped digital life in the 2000s.",
+
+        "Pemutar kaset portabel seperti Sony Walkman mengubah kebiasaan mendengarkan musik dengan memungkinkan orang membawa musik ke sekolah, perjalanan, atau saat berjalan kaki. Remaja dapat menikmati lagu menggunakan headphone tanpa harus menguasai radio atau pemutar musik di rumah.":
+            "Portable cassette players such as the Sony Walkman changed listening habits by allowing people to take their music to school, on trips, or while walking. Teenagers could enjoy music with headphones without having to use a radio or music player at home.",
+
+        "Mixtape juga menjadi cara untuk menunjukkan selera musik. Seseorang dapat merekam lagu pilihan ke dalam kaset, menyusun urutan lagu, lalu memberikan kaset tersebut kepada teman. Kebiasaan ini memiliki kemiripan dengan playlist personal yang digunakan sekarang.":
+            "Mixtapes also became a way to express musical taste. Someone could record selected songs onto a cassette, arrange the tracks, and then give the cassette to a friend. This habit is similar to the personal playlists people use today.",
+
+        "Berikut beberapa lagu dari Billboard Year-End Hot 100 Amerika Serikat tahun 2006. Ini adalah referensi musik populer di AS, bukan peringkat global atau khusus pengguna Walkman.":
+            "Here are several songs from the 2006 Billboard Year-End Hot 100 in the United States. These are references to popular music in the US, not a global ranking or a ranking specifically for Walkman users.",
+
+        "RETRO FACT — Mixtape memungkinkan pendengarnya menyusun pengalaman musik sendiri. Pada era kaset, pilihan lagu dan urutannya sering menjadi bagian dari pesan yang ingin disampaikan kepada penerima.":
+            "RETRO FACT — Mixtapes allowed listeners to create their own music experience. In the cassette era, the choice and order of songs often became part of the message intended for the recipient.",
+
+        "Pemutar MP3 mengubah cara orang membawa musik. Berbeda dengan kaset yang menggunakan pita fisik, MP3 player menyimpan musik sebagai berkas digital. Pengguna dapat memilih lagu tanpa harus mengganti kaset atau CD setiap kali ingin mendengarkan album lain.":
+            "MP3 players changed the way people carried music. Unlike cassettes, which used physical tape, an MP3 player stored music as digital files. Users could choose songs without having to change a cassette or CD whenever they wanted to listen to another album.",
+
+        "Perangkat seperti Apple iPod membantu memopulerkan pengalaman membawa banyak lagu dalam satu perangkat. Komputer menjadi bagian dari kebiasaan baru: pengguna mengatur koleksi musik, memindahkan berkas ke perangkat, lalu mendengarkannya saat bepergian.":
+            "Devices such as the Apple iPod helped popularize the experience of carrying many songs in one device. Computers became part of a new routine: users organized their music collections, transferred files to the device, and then listened while traveling.",
+
+        "menyimpan berkas musik.":
+            "stores music files.",
+
+        "mendekode berkas MP3 menjadi data audio.":
+            "decodes MP3 files into audio data.",
+
+        "mengubah audio digital menjadi sinyal analog.":
+            "converts digital audio into an analog signal.",
+
+        "memperkuat sinyal untuk headphone.":
+            "amplifies the signal for headphones.",
+
+        "menyediakan daya untuk pemutaran portabel.":
+            "provides power for portable playback.",
+
+        "THE BIG CHANGE — Koleksi musik yang sebelumnya memenuhi rak kaset atau CD bisa dibawa dalam perangkat berukuran kecil. Kapasitas penyimpanan dan kompresi MP3 menjadi bagian penting dari perubahan ini.":
+            "THE BIG CHANGE — Music collections that once filled shelves with cassettes or CDs could be carried in a small device. Storage capacity and MP3 compression became important parts of this change.",
+
+        "Sony PSP menghadirkan pengalaman bermain game dalam perangkat genggam dengan layar lebar, kontrol fisik, dan grafis yang ambisius untuk perangkat portabel pada masanya. Pemain dapat bermain ketika bepergian, saat istirahat, atau ketika berkumpul dengan teman.":
+            "The Sony PSP brought a gaming experience to a handheld device with a wide screen, physical controls, and ambitious graphics for a portable device of its time. Players could play while traveling, during breaks, or when hanging out with friends.",
+
+        "PSP juga memiliki kemampuan multimedia, termasuk memutar musik dan video. Konektivitas Wi-Fi pada perangkat dan game yang mendukungnya memungkinkan fitur nirkabel tertentu, sehingga PSP tidak hanya berfungsi sebagai konsol permainan.":
+            "The PSP also had multimedia capabilities, including music and video playback. Wi-Fi connectivity on the device and supported games enabled certain wireless features, making the PSP more than just a game console.",
+
+        "Berikut beberapa game PSP yang relevan dengan periode pertengahan 2000-an. Daftar ini bukan peringkat resmi global.":
+            "Here are several PSP games relevant to the mid-2000s period. This list is not an official global ranking.",
+
+        "— game open-world yang menjadi salah satu judul penting dalam katalog PSP.":
+            "— an open-world game that became one of the notable titles in the PSP catalog.",
+
+        "— membawa pemain kembali ke dunia Vice City.":
+            "— takes players back to the world of Vice City.",
+
+        "— game platformer yang dirilis pada 2006.":
+            "— a platformer game released in 2006.",
+
+        "— game fighting dengan pertarungan cepat.":
+            "— a fighting game featuring fast-paced battles.",
+
+        "— game balap yang dirancang untuk PSP.":
+            "— a racing game designed for the PSP.",
+
+        "— game tactical shooter dengan fitur multiplayer.":
+            "— a tactical shooter game with multiplayer features.",
+
+        "RETRO FACT — Banyak game PSP menggunakan Universal Media Disc (UMD), format cakram optik kecil yang dirancang untuk perangkat portabel. PSP juga memiliki analog stick yang membantu kontrol permainan tiga dimensi.":
+            "RETRO FACT — Many PSP games used Universal Media Disc (UMD), a small optical disc format designed for portable devices. The PSP also had an analog stick that helped with three-dimensional game controls.",
+
+        "Kamera digital saku membuat dokumentasi keseharian lebih praktis. Pengguna dapat melihat foto langsung pada layar, menghapus foto yang tidak diinginkan, dan memindahkan hasilnya ke komputer tanpa harus menunggu film dicuci. Ukurannya cocok untuk perjalanan, acara sekolah, dan foto bersama teman.":
+            "Pocket digital cameras made everyday documentation more practical. Users could view photos directly on the screen, delete unwanted photos, and transfer them to a computer without waiting for film to be developed. Their size made them suitable for trips, school events, and photos with friends.",
+
+        "Salah satu contoh inovasi pada 2006 adalah Sony Cyber-shot DSC-T50. Kamera ini memiliki sensor CCD 7,2 megapiksel, lensa zoom optik 3x, layar sentuh 3 inci, dan teknologi Optical SteadyShot untuk membantu mengurangi efek guncangan.":
+            "One example of innovation in 2006 was the Sony Cyber-shot DSC-T50. This camera had a 7.2-megapixel CCD sensor, 3x optical zoom lens, a 3-inch touchscreen, and Optical SteadyShot technology to help reduce the effects of camera shake.",
+
+        "menangkap cahaya yang masuk melalui lensa dan mengubahnya menjadi sinyal untuk membentuk gambar digital.":
+            "captures light entering through the lens and converts it into signals to form a digital image.",
+
+        "mengarahkan cahaya ke sensor dan memperbesar objek secara optik.":
+            "directs light to the sensor and optically magnifies the subject.",
+
+        "sistem stabilisasi optik membantu mengurangi blur akibat gerakan tangan saat memotret.":
+            "the optical stabilization system helps reduce blur caused by hand movement while taking photos.",
+
+        "memproses data gambar, termasuk warna dan detail, sebelum hasilnya disimpan.":
+            "processes image data, including color and detail, before the result is stored.",
+
+        "media penyimpanan yang digunakan untuk menyimpan foto pada model yang mendukungnya.":
+            "a storage medium used to store photos on supported models.",
+
+        "membantu pengguna melihat foto dan mengakses sejumlah pengaturan melalui layar sentuh.":
+            "helps users view photos and access various settings through the touchscreen.",
+
+        "WHY IT MATTERED — Sensor CCD menangkap informasi cahaya, sedangkan sistem stabilisasi membantu mengurangi efek guncangan. Kombinasi teknologi tersebut menunjukkan bagaimana kamera saku berkembang menjadi perangkat digital yang semakin praktis dan canggih.":
+            "WHY IT MATTERED — The CCD sensor captured light information, while the stabilization system helped reduce the effects of camera shake. This combination of technologies shows how pocket cameras evolved into increasingly practical and advanced digital devices.",
+
+        "Referensi untuk membaca lebih lanjut tentang musik, game, dan teknologi perangkat yang dibahas di Retro-Hub.":
+            "References for learning more about the music, games, and device technologies discussed in Retro-Hub.",
+
+        "Elektronik merupakan bagian penting dari perkembangan teknologi. Dari radio, televisi, Walkman, hingga konsol game portable, setiap perangkat menunjukkan bagaimana komponen elektronik berkembang menjadi lebih kecil, praktis, dan mudah digunakan.":
+            "Electronics are an important part of technological development. From radios and televisions to Walkmans and portable game consoles, each device shows how electronic components evolved to become smaller, more practical, and easier to use.",
+
+        "RETRO-HUB dibuat sebagai ruang sederhana untuk mengenal kembali perangkat elektronik lama sekaligus melihat bagaimana teknologi tersebut berhubungan dengan perangkat modern.":
+            "RETRO-HUB was created as a simple space to rediscover older electronic devices while seeing how those technologies relate to modern devices.",
+
+        "LIHAT PENJELASAN →":
+            "VIEW EXPLANATION →",
+
+        "Search...":
+            "Search...",
+
+        "Tampilkan gambar":
+            "Show image",
+
+        "Klik PLAY / RESTART untuk mencoba lagi":
+            "Click PLAY / RESTART to try again"
+    };
+
+    const originalNodes = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+
+    while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (node.parentElement && !['SCRIPT', 'STYLE'].includes(node.parentElement.tagName)) {
+            originalNodes.push({
+                node: node,
+                original: node.textContent
+            });
+        }
+    }
+
+    function normalize(text) {
+        return text.replace(/\s+/g, ' ').trim();
+    }
+
+    function setLanguage(lang) {
+        document.documentElement.lang = lang;
+
+        originalNodes.forEach(item => {
+            if (lang === 'id') {
+                item.node.textContent = item.original;
+                return;
+            }
+
+            const key = normalize(item.original);
+            if (translations[key]) {
+                const leading = item.original.match(/^\s*/)?.[0] || '';
+                const trailing = item.original.match(/\s*$/)?.[0] || '';
+                item.node.textContent = leading + translations[key] + trailing;
+            }
+        });
+
+        // Attribute yang terlihat/terbaca oleh pengguna.
+        document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+            el.alt = lang === 'en' ? el.dataset.i18nAlt : el.dataset.i18nAltId;
+        });
+
+        const search = document.getElementById('searchInput');
+        if (search) {
+            search.placeholder = lang === 'en' ? 'Search...' : 'Search...';
+        }
+
+        localStorage.setItem('retroHubLanguage', lang);
+    }
+
+    // Simpan teks alternatif gambar dalam dua bahasa.
+    document.querySelectorAll('img').forEach(img => {
+        if (!img.dataset.i18nAltId) {
+            img.dataset.i18nAltId = img.alt || '';
+            img.dataset.i18nAlt = img.alt || '';
+        }
+    });
+
+    languageSelect.addEventListener('change', function () {
+        setLanguage(this.value);
+    });
+
+    // Gunakan bahasa yang terakhir dipilih.
+    const savedLanguage = localStorage.getItem('retroHubLanguage') || 'id';
+    languageSelect.value = savedLanguage;
+    setLanguage(savedLanguage);
+})();
+
+</script>
+
+</body>
+</html>
